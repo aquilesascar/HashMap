@@ -79,6 +79,9 @@ public class Main {
         }
         System.out.println("Tempo de busca na HashMap: " + (fimHash - inicioHash) + " ns");
     }
+
+    //Comparar hash com avl de busca e achar um problema que que é melhor resolver com hash do que com avl e outras coisas.
+    //talvez não utilizar o index para fazer a busca, realizar a comparação perorrendo todo o array.
 }
 
 
