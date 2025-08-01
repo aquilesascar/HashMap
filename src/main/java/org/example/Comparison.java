@@ -1,55 +1,54 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-/**
- * Classe de Comparação: HashTable vs. AVLTree.
- *
- * OBJETIVO:
- * Demonstrar um cenário onde a velocidade de busca de uma HashTable (O(1) em média)
- * é visivelmente superior à de uma AVLTree (O(log n)), justificando seu uso quando
- * a ordenação dos dados não é um requisito.
- */
 public class Comparison {
 
     public static void main(String[] args) {
-        // --- 1. CONFIGURAÇÃO ---
-        int numeroDeElementos = 500000; // Usamos um número grande de elementos para tornar a diferença de tempo mais aparente
-        long seed = 42; // Semente fixa para garantir que ambas as estruturas recebam os mesmos dados
+        int numeroDeElementos = 500000;
+        long seed = 42;
         Random random = new Random(seed);
 
+        List<Integer> numerosGerados = new ArrayList<>();
+        System.out.println("Gerando " + numeroDeElementos + " números aleatórios...");
+        for (int i = 0; i < numeroDeElementos; i++) {
+            numerosGerados.add(random.nextInt());
+        }
+        System.out.println("Números gerados com sucesso.");
+
         // Instancia nossas estruturas de dados
-        // Para a HashTable, um bom tamanho é cerca de 1.5 a 2 vezes o número de elementos para minimizar colisões
         HashTable hashTable = new HashTable(numeroDeElementos * 2);
         AVLTree avlTree = new AVLTree();
 
-        System.out.println("Inserindo " + numeroDeElementos + " elementos na HashTable e na AVLTree...");
+        System.out.println("Inserindo os números na HashTable e na AVLTree...");
 
-        // --- 2. POPULANDO AS ESTRUTURAS ---
-        // Insere os mesmos dados em ambas as estruturas
-        for (int i = 0; i < numeroDeElementos; i++) {
-            int valor = random.nextInt(); // Gera um inteiro aleatório
-            hashTable.put(valor);
-            avlTree.insert(valor);
+        // Agora, usamos a lista que já criamos para popular as estruturas.
+        for (int numero : numerosGerados) {
+            hashTable.put(numero);
+            avlTree.insert(numero);
         }
-
         System.out.println("Inserção concluída.");
 
-        // Pede ao usuário o número a ser buscado
+        System.out.println("A lista de números é muito grande. Aqui estão os primeiros 20 números como exemplo:");
+        for (int i = 0; i < 20; i++) {
+            System.out.println(" - " + numerosGerados.get(i));
+        }
+        System.out.println("-----------------------------------------------------");
+
+
         Scanner sc = new Scanner(System.in);
-        System.out.print("\nDigite um número para buscar (sugestão: um número grande e aleatório): ");
+        System.out.print("\nDigite um dos números da lista acima para buscar: ");
         int numeroParaBuscar = sc.nextInt();
         sc.close();
-
-        // --- 3. TESTE DE DESEMPENHO DA BUSCA ---
 
         // Teste na HashTable
         System.out.println("\n--- Buscando na HashTable ---");
         long inicioBuscaHash = System.nanoTime();
         boolean encontradoHash = hashTable.contains(numeroParaBuscar);
         long fimBuscaHash = System.nanoTime();
-
         System.out.println("Valor " + (encontradoHash ? "ENCONTRADO" : "NÃO ENCONTRADO") + " na HashTable.");
         System.out.println("Tempo de busca: " + (fimBuscaHash - inicioBuscaHash) + " ns");
 
@@ -58,15 +57,7 @@ public class Comparison {
         long inicioBuscaAVL = System.nanoTime();
         boolean encontradoAVL = avlTree.search(numeroParaBuscar);
         long fimBuscaAVL = System.nanoTime();
-
         System.out.println("Valor " + (encontradoAVL ? "ENCONTRADO" : "NÃO ENCONTRADO") + " na AVLTree.");
         System.out.println("Tempo de busca: " + (fimBuscaAVL - inicioBuscaAVL) + " ns");
-
-        // --- 4. CONCLUSÃO ---
-        System.out.println("\n--- Conclusão da Comparação ---");
-        System.out.println("A busca na HashTable (O(1)) foi significativamente mais rápida que na AVLTree (O(log n)).");
-        System.out.println("Isso ocorre porque a HashTable calcula a posição do elemento diretamente,");
-        System.out.println("enquanto a AVLTree precisa navegar pela árvore, fazendo múltiplas comparações.");
-        System.out.println("Este é um exemplo clássico de problema (busca rápida sem necessidade de ordenação) onde a HashTable é a estrutura de dados mais eficiente.");
     }
 }
