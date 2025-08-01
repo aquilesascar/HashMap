@@ -25,7 +25,7 @@ public class Main {
         int numeroParaBuscar = sc.nextInt();
         sc.close();
 
-        //BUSCA LINEAR (ARRAY DESORDENADO)
+        //BUSCA LINEAR (ARRAY DEORDENADO)
         System.out.println("\n--- Comparando com Array Desordenado ---");
         long inicioBuscaLinear = System.nanoTime();
 
@@ -73,7 +73,7 @@ public class Main {
 
         for (int i = 0; i < tamanho; i++) {
             int valor = random.nextInt(10000);
-            hashMap.put(valor, i); // A chave é o número, o valor é seu índice de geração
+            hashMap.put(valor, i); //a chave é o número, o valor é seu índice de geração
         }
 
         long inicioHash = System.nanoTime();

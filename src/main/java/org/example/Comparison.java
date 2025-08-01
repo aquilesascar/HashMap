@@ -19,13 +19,13 @@ public class Comparison {
         }
         System.out.println("Números gerados com sucesso.");
 
-        // Instancia nossas estruturas de dados
+        //instancia nossas estruturas de dados
         HashTable hashTable = new HashTable(numeroDeElementos * 2);
         AVLTree avlTree = new AVLTree();
 
         System.out.println("Inserindo os números na HashTable e na AVLTree...");
 
-        // Agora, usamos a lista que já criamos para popular as estruturas.
+        //agora usamos a lista que já criamos para popular as estruturas
         for (int numero : numerosGerados) {
             hashTable.put(numero);
             avlTree.insert(numero);
@@ -36,7 +36,7 @@ public class Comparison {
         for (int i = 0; i < 20; i++) {
             System.out.println(" - " + numerosGerados.get(i));
         }
-        System.out.println("-----------------------------------------------------");
+        System.out.println("----------------------------------------------");
 
 
         Scanner sc = new Scanner(System.in);
@@ -44,7 +44,7 @@ public class Comparison {
         int numeroParaBuscar = sc.nextInt();
         sc.close();
 
-        // Teste na HashTable
+        //teste na HashTable
         System.out.println("\n--- Buscando na HashTable ---");
         long inicioBuscaHash = System.nanoTime();
         boolean encontradoHash = hashTable.contains(numeroParaBuscar);
@@ -52,7 +52,7 @@ public class Comparison {
         System.out.println("Valor " + (encontradoHash ? "ENCONTRADO" : "NÃO ENCONTRADO") + " na HashTable.");
         System.out.println("Tempo de busca: " + (fimBuscaHash - inicioBuscaHash) + " ns");
 
-        // Teste na AVLTree
+        //teste na AVLTree
         System.out.println("\n--- Buscando na AVLTree ---");
         long inicioBuscaAVL = System.nanoTime();
         boolean encontradoAVL = avlTree.search(numeroParaBuscar);

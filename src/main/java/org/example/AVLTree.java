@@ -78,23 +78,23 @@ public class AVLTree {
 
         int balance = getBalance(node);
 
-        //Rotação Simples à Direita
+        //rotação Simples à Direita
         if (balance > 1 && key < node.left.key) {
             return rightRotate(node);
         }
 
-        //Rotação Simples à Esquerda
+        //rotação Simples à Esquerda
         if (balance < -1 && key > node.right.key) {
             return leftRotate(node);
         }
 
-        //Rotação Dupla à Direita
+        //rotação Dupla à Direita
         if (balance > 1 && key > node.left.key) {
             node.left = leftRotate(node.left);
             return rightRotate(node);
         }
 
-        //Rotação Dupla à Esquerda
+        //rotação Dupla à Esquerda
         if (balance < -1 && key < node.right.key) {
             node.right = rightRotate(node.right);
             return leftRotate(node);
