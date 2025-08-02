@@ -33,7 +33,6 @@ public class AVLTree {
         Node x = y.left;
         Node T2 = x.right;
 
-        //
         x.right = y;
         y.left = T2;
 

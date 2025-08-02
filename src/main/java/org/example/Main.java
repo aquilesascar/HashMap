@@ -23,14 +23,13 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.print("\nDigite um número para buscar: ");
         int numeroParaBuscar = sc.nextInt();
-        sc.close();
 
-        //BUSCA LINEAR (ARRAY DEORDENADO)
+        //BUSCA LINEAR (ARRAY DESORDENADO)
         System.out.println("\n--- Comparando com Array Desordenado ---");
         long inicioBuscaLinear = System.nanoTime();
 
         boolean encontradoLinear = false;
-        //percorre cada elemento do array um por um
+        //percorre cada elemento
         for (int num : array) {
             if (num == numeroParaBuscar) {
                 encontradoLinear = true;
@@ -51,7 +50,7 @@ public class Main {
         int[] arrayOrdenado = Arrays.copyOf(array, array.length);
 
         long inicioOrdenacao = System.nanoTime();
-        Arrays.sort(arrayOrdenado); //ordena o array, um pré-requisito para a busca binária
+        Arrays.sort(arrayOrdenado); //ordena o array, pré-requisito para a busca binária
         long fimOrdenacao = System.nanoTime();
 
         long inicioBuscaBinaria = System.nanoTime();
@@ -66,18 +65,18 @@ public class Main {
         System.out.println("Tempo de ordenação: " + (fimOrdenacao - inicioOrdenacao) + " ns");
         System.out.println("Tempo de busca binária: " + (fimBuscaBinaria - inicioBuscaBinaria) + " ns");
 
-        //BUSCA EM HASHMAP ---
+        //BUSCA EM HASHMAP
         System.out.println("\n--- Comparando com HashMap ---");
         HashMap<Integer, Integer> hashMap = new HashMap<>();
         random = new Random(seed);
 
         for (int i = 0; i < tamanho; i++) {
             int valor = random.nextInt(10000);
-            hashMap.put(valor, i); //a chave é o número, o valor é seu índice de geração
+            hashMap.put(valor, i); // a chave é o número, o valor é seu índice de geração
         }
 
         long inicioHash = System.nanoTime();
-        boolean encontradoHash = hashMap.containsKey(numeroParaBuscar); //verifica se a chave existe
+        boolean encontradoHash = hashMap.containsKey(numeroParaBuscar);
         long fimHash = System.nanoTime();
 
         if (encontradoHash) {
@@ -86,5 +85,28 @@ public class Main {
             System.out.println("Valor não encontrado na HashMap.");
         }
         System.out.println("Tempo de busca na HashMap: " + (fimHash - inicioHash) + " ns");
+
+        //BUSCA EM ÁRVORE AVL
+        System.out.println("\n--- Comparando com Árvore AVL ---");
+        AVLTree avlTree = new AVLTree();
+        random = new Random(seed);
+
+        for (int i = 0; i < tamanho; i++) {
+            int valor = random.nextInt(10000);
+            avlTree.insert(valor);
+        }
+
+        long inicioBuscaAVL = System.nanoTime();
+        boolean encontradoAVL = avlTree.search(numeroParaBuscar);
+        long fimBuscaAVL = System.nanoTime();
+
+        if (encontradoAVL) {
+            System.out.println("Valor encontrado na Árvore AVL.");
+        } else {
+            System.out.println("Valor não encontrado na Árvore AVL.");
+        }
+        System.out.println("Tempo de busca na Árvore AVL: " + (fimBuscaAVL - inicioBuscaAVL) + " ns");
+
+        sc.close();
     }
 }

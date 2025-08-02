@@ -9,7 +9,7 @@ public class SupermarketList {
     public static void main(String[] args) {
         HashSet<String> listaDeCompras = new HashSet<>();
         int numeroDeProdutos = 500000;
-        System.out.println("Criando uma lista de compras gigante com " + numeroDeProdutos + " produtos...");
+        System.out.println("Criando uma lista de compras gigante com 500000 produtos...");
 
         String[] produtosBase = {
                 "leite", "pão", "queijo", "presunto", "iogurte", "manteiga", "café", "açúcar", "sal",
@@ -29,8 +29,7 @@ public class SupermarketList {
         System.out.println("Lista criada com sucesso!");
         System.out.println("Tempo para inserir " + numeroDeProdutos + " produtos: " + (fimInsercao - inicioInsercao) / 1_000_000 + " ms");
 
-
-        //BUSCANDO PRODUTO
+        //buscando produto
         System.out.println("\nAgora, vamos testar a velocidade da busca.");
 
         System.out.println("A lista completa é muito grande para ser exibida! Aqui estão os primeiros 20 itens como exemplo:");
@@ -59,7 +58,7 @@ public class SupermarketList {
             System.out.println("\nNÃO ENCONTRADO. O produto '" + produtoParaBuscar + "' não está na lista.");
         }
 
-        System.out.println("-----------------------------------------------------");
+        System.out.println("------------------------------------------");
         System.out.println("Tempo de busca: " + (fimBusca - inicioBusca) + " nanossegundos!");
 
         scanner.close();

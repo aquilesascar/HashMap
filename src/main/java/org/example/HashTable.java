@@ -8,7 +8,6 @@ public class HashTable {
     private LinkedList<Integer>[] table;
     private int size;
 
-    @SuppressWarnings("unchecked")
     public HashTable(int size) {
         this.size = size;
         this.table = new LinkedList[size];
